@@ -1,16 +1,13 @@
-import { LocationCard } from "./locations/LocationCard"
-
+import React from "react"
+import { NavBar } from "./nav/NavBar"
+import { ApplicationViews } from "./ApplicationViews"
+import "./KandyKorner.css"
 
 export const KandyKorner = () => (
     <>
-    <h2>Kandy Korner</h2>
-    <small>Welcome to Kandy Korner</small>
-    <h2>Locations</h2>
-    <article className="locations">
-        <LocationCard />
-        <LocationCard />
-        <LocationCard />
-    </article>
+    <NavBar />
+    <ApplicationViews />
     </>
 )
+
 
