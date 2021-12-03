@@ -1,5 +1,8 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
+import { EmployeeForm } from "./employees/EmployeeForm"
+import { EmployeeList } from "./employees/EmployeeList"
+import { EmployeeProvider } from "./employees/EmployeeProvider"
 import { Home } from "./Home"
 import { LocationList } from "./locations/LocationList"
 import { LocationProvider } from "./locations/LocationProvider"
@@ -9,8 +12,11 @@ import { ProductTypeProvider } from "./products/ProductTypesProvider"
 
 
 
+
+
 export const ApplicationViews = () => {
     return (
+        <EmployeeProvider>
         <ProductTypeProvider>
         <ProductProvider>
         <LocationProvider>
@@ -25,12 +31,15 @@ export const ApplicationViews = () => {
 
             <Route path="/locations" element={<LocationList />}/>
 
-            {/* <Route path="/employees" element={<EmployeeCard />}/> */}
+            <Route path="/employees" element={<EmployeeList />}/>
+            <Route path="/employees/create" element={<EmployeeForm />} />
+
 
         </Routes>
         </LocationProvider>
         </ProductProvider>
         </ProductTypeProvider>
+        </EmployeeProvider>
         
     )
 }
