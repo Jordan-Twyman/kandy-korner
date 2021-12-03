@@ -3,14 +3,16 @@ import { Route, Routes } from "react-router-dom"
 import { Home } from "./Home"
 import { LocationList } from "./locations/LocationList"
 import { LocationProvider } from "./locations/LocationProvider"
-// import { CustomerCard } from "./customer/CustomerCard"
-// import { EmployeeCard } from "./employee/EmployeeCard"
-// import { AnimalProvider } from "./animal/AnimalProvider"
-// import { AnimalList } from "./animal/AnimalList"
+import { ProductList } from "./products/ProductList"
+import { ProductProvider } from "./products/ProductProvider"
+import { ProductTypeProvider } from "./products/ProductTypesProvider"
+
 
 
 export const ApplicationViews = () => {
     return (
+        <ProductTypeProvider>
+        <ProductProvider>
         <LocationProvider>
         <Routes>
             {/* Render the location list when http://localhost:3000/ */}
@@ -19,7 +21,7 @@ export const ApplicationViews = () => {
             {/* Render the animal list when http://localhost:3000/animals */}
             {/* <Route path="/animals" element={<AnimalProvider><AnimalList /></AnimalProvider>}/> */}
            
-            {/* <Route path="/customers" element={<CustomerCard />}/> */}
+            <Route path="/products" element={<ProductList />}/>
 
             <Route path="/locations" element={<LocationList />}/>
 
@@ -27,5 +29,8 @@ export const ApplicationViews = () => {
 
         </Routes>
         </LocationProvider>
+        </ProductProvider>
+        </ProductTypeProvider>
+        
     )
 }

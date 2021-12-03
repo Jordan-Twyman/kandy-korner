@@ -2,28 +2,28 @@ import React, { useState, createContext } from "react"
 
 // The context is imported and used by individual components that need data
 //LocationContext stores date used in application
-export const ProductContext = createContext()
+export const ProductTypeContext = createContext()
 
 // This component allows other components to use the context data
-export const ProductProvider = (props) => {
+export const ProductTypeProvider = (props) => {
     //useState hook defines a variable that holds the state of the compnent and a function to update it
-    const [products, setProducts] = useState([])
+    const [productTypes, setProductTypes] = useState([])
 
-    const getProducts = () => {
-        return fetch("http://localhost:8088/products")
+    const getProductTypes = () => {
+        return fetch("http://localhost:8088/productTypes")
         .then(res => res.json())
-        .then(setProducts)
+        .then(setProductTypes)
     }
 
-    const addProduct = productObj => {
-        return fetch("http://localhost:8088/products", {
+    const addProductType = productTypeObj => {
+        return fetch("http://localhost:8088/productTypes", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(productObj)
+            body: JSON.stringify(productTypeObj)
         })
-        .then(getProducts)
+        .then(getProductTypes)
     }
 
     /*
@@ -33,10 +33,11 @@ export const ProductProvider = (props) => {
         allows any child elements to access them.
     */
     return (
-        <ProductContext.Provider value={{
-            products, getProducts, addProduct
+        <ProductTypeContext.Provider value={{
+            productTypes, getProductTypes, addProductType
         }}>
             {props.children}
-        </ProductContext.Provider>
+        </ProductTypeContext.Provider>
     )
 }
+
