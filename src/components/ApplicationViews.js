@@ -1,7 +1,8 @@
 import React from "react"
 import { Route, Routes } from "react-router-dom"
 import { Home } from "./Home"
-import { LocationCard } from "./locations/LocationCard"
+import { LocationList } from "./locations/LocationList"
+import { LocationProvider } from "./locations/LocationProvider"
 // import { CustomerCard } from "./customer/CustomerCard"
 // import { EmployeeCard } from "./employee/EmployeeCard"
 // import { AnimalProvider } from "./animal/AnimalProvider"
@@ -10,6 +11,7 @@ import { LocationCard } from "./locations/LocationCard"
 
 export const ApplicationViews = () => {
     return (
+        <LocationProvider>
         <Routes>
             {/* Render the location list when http://localhost:3000/ */}
             <Route exact path="/" element={<Home/>}/>
@@ -19,10 +21,11 @@ export const ApplicationViews = () => {
            
             {/* <Route path="/customers" element={<CustomerCard />}/> */}
 
-            <Route path="/locations" element={<LocationCard />}/>
+            <Route path="/locations" element={<LocationList />}/>
 
             {/* <Route path="/employees" element={<EmployeeCard />}/> */}
 
         </Routes>
+        </LocationProvider>
     )
 }
