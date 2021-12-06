@@ -3,6 +3,7 @@ import { LocationContext } from "../locations/LocationProvider";
 import { EmployeeContext } from "../employees/EmployeeProvider";
 import "./Employee.css";
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 
 export const EmployeeForm = () => {
@@ -62,10 +63,32 @@ export const EmployeeForm = () => {
     
 
     if (locationId === 0) {
-      window.alert("Please select a location");
+      // window.alert("Please select a location");
+      Swal.fire({
+        title: 'Error!',
+        text: 'Please enter all available employee information',
+        icon: 'error',
+        confirmButtonText: 'Fix it'
+      })
     } else {
       //invoke addAnimal passing animal as an argument.
       //once complete, change the url and display the animal list
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'New Employee Saved!'
+      })
       addEmployee(employee)
       .then(() => navigate("/employees"));
     }
