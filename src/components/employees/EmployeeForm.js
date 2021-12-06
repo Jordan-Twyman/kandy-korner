@@ -51,7 +51,7 @@ export const EmployeeForm = () => {
     event.preventDefault(); //Prevents the browser from submitting the form
 
     const locationId = parseInt(employee.locationId);
-    const hourlyRate = parseInt(employee.hourlyRate);
+    const hourlyRate = parseFloat(employee.hourlyRate);
     const manager = Boolean(employee.manager)
     const fullTime = Boolean(employee.fullTime)
 
